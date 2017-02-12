@@ -9,6 +9,7 @@
   "author": "Kantapon Sritiyot <kantapon.sritiyot@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "node-line-bot-api": "^0.1.3"
   },
