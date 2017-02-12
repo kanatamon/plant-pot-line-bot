@@ -39,7 +39,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   // Get content from request body
   const promises = request.body.events.map(event => {
     // Reply message
-    if (event.message.text === 'temperature') {
+    if (event.message.text === 't') {
     	return readTemperature( json => {
     		return line.client
 					      .replyMessage({
@@ -47,7 +47,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 					        messages: [
 					          {
 					            type: 'text',
-					            text: json[0].payload
+					            text: `temperature = ${json[0].payload}`
 					          }
 					        ]
 					      })	
