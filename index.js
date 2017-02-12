@@ -13,7 +13,7 @@ const chanelAccessToken = '30oK3U/OYhAREtjGPWjZlQ5ecHRO+w5NmJBBrAT7fysZzfWeeHSRV
 
 
 const readTemperature = () => {
-	return fetch('https://api.netpie.io/topic/PlantPot2/sensor/LightLevel?auth=Y35OK6MFGX5TQm1:eIjiYDLmUhznX6xMPVCLsVGRg')
+	return fetch('https://api.netpie.io/topic/PlantPot2/sensor/Temperature?auth=Y35OK6MFGX5TQm1:eIjiYDLmUhznX6xMPVCLsVGRg')
 				  .then((response) => {
 			      if (response.status >= 400) {
 		          throw new Error("Bad response from server");
