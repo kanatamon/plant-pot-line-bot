@@ -38,23 +38,23 @@ line.init({
 app.post('/webhook/', line.validator.validateSignature(), (request, response, next) => {
   // Get content from request body
   const promises = request.body.events.map(event => {
-    // Reply message
-    if (event.message.text === 't') {
-    	return readTemperature( json => {
-    		return line.client
-					      .replyMessage({
-					        replyToken: event.replyToken,
-					        messages: [
-					          {
-					            type: 'text',
-					            text: `temperature = ${json[0].payload}`
-					          }
-					        ]
-					      })	
-    	})
-    	
+  	// Handle event message
+    if (event.type === 'message') {
+    	return 	readTemperature()
+    						.then(json => {
+    							// Reply message to user
+    							return 	line.client
+												    .replyMessage({
+												      replyToken: event.replyToken,
+												      messages: [
+												        {
+												          type: 'text',
+												          text: `temperature = ${json[0].payload}`
+												        }
+												      ]
+												    })
+								})
     }
-
   })
 
   Promise
