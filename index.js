@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-const chanelAccessToken = '30oK3U/OYhAREtjGPWjZlQ5ecHRO+w5NmJBBrAT7fysZzfWeeHSRVrcBw5Nx/whRPN13sBSzINT78OyWuL5oRqUNet3qeqbsqEpzBspTmXz/YE5leFQqaCAk/PgyjsRz/pBjApw3ggH8iib1TnMfjQdB04t89/1O/w1cDnyilFU='
 const channelSecret = 'c4e4bee94a4699fafc214a5a725fb3f9'
+const chanelAccessToken = '30oK3U/OYhAREtjGPWjZlQ5ecHRO+w5NmJBBrAT7fysZzfWeeHSRVrcBw5Nx/whRPN13sBSzINT78OyWuL5oRqUNet3qeqbsqEpzBspTmXz/YE5leFQqaCAk/PgyjsRz/pBjApw3ggH8iib1TnMfjQdB04t89/1O/w1cDnyilFU='
 
 app.use(bodyParser.json({
   verify (request, response, buffer) {
@@ -17,7 +17,7 @@ app.use(bodyParser.json({
 
 // Initialize authentication
 line.init({
-	accessToke: chanelAccessToken,
+	accessToken: chanelAccessToken,
 	channelSecret: channelSecret
 })
 
