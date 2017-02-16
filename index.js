@@ -45,7 +45,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							  "altText": "this is a buttons template",
 							  "template": {
 							      "type": "buttons",
-							      "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+							      "thumbnailImageUrl": "http://assets1.smoothradio.com/2013/30/weather-1375260252-hero-wide-1.jpg",
 							      "title": "Menu",
 							      "text": "Please select",
 							      "actions": [
