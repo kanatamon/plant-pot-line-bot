@@ -8,19 +8,10 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-const channelSecret = 'CHANEL_SECRET'
-const chanelAccessToken = 'CHANEL_ACCESS_TOKEN'
+const readTemperature = require('./api').readTemperature
 
-
-const readTemperature = () => {
-	return fetch('https://api.netpie.io/topic/PlantPot2/sensor/Temperature?auth=Y35OK6MFGX5TQm1:eIjiYDLmUhznX6xMPVCLsVGRg')
-				  .then((response) => {
-			      if (response.status >= 400) {
-		          throw new Error("Bad response from server");
-			      }
-			      return response.json();
-				  })
-}
+const channelSecret = 'c4e4bee94a4699fafc214a5a725fb3f9'
+const chanelAccessToken = '30oK3U/OYhAREtjGPWjZlQ5ecHRO+w5NmJBBrAT7fysZzfWeeHSRVrcBw5Nx/whRPN13sBSzINT78OyWuL5oRqUNet3qeqbsqEpzBspTmXz/YE5leFQqaCAk/PgyjsRz/pBjApw3ggH8iib1TnMfjQdB04t89/1O/w1cDnyilFU='
 
 app.use(bodyParser.json({
   verify (request, response, buffer) {
@@ -40,20 +31,19 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   const promises = request.body.events.map(event => {
   	// Handle event message
     if (event.type === 'message') {
-    	return 	readTemperature()
-    						.then(json => {
-    							// Reply message to user
-    							return 	line.client
-												    .replyMessage({
-												      replyToken: event.replyToken,
-												      messages: [
-												        {
-												          type: 'text',
-												          text: `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`
-												        }
-												      ]
-												    })
-								})
+    	return 	
+    		readTemperature()
+					.then(json => line.client
+						.replyMessage({
+				      replyToken: event.replyToken,
+				      messages: [
+				        {
+				          type: 'text',
+				          text: `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`
+				        }
+				      ]
+				    })
+					)
     }
   })
 
