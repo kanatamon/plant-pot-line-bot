@@ -5,6 +5,7 @@ const auth = 'Y35OK6MFGX5TQm1:eIjiYDLmUhznX6xMPVCLsVGRg'
 module.exports.readTemperature = () =>
 	fetch(`${endpoint}/topic/${appId}/sensor/Temperature?auth=${auth}`)
 		.then((response) => {
+			console.log(response.status)
 		  if (response.status >= 400) {
 		    throw new Error("Bad response from server")
 		  }

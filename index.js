@@ -31,20 +31,18 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   const promises = request.body.events.map(event => {
   	// Handle event message
     if (event.type === 'message') {
-    	console.log('recieve message', api)
-    	return 	
-    		api.readTemperature()
-					.then(json => line.client
-						.replyMessage({
-				      replyToken: event.replyToken,
-				      messages: [
-				        {
-				          type: 'text',
-				          text: `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`
-				        }
-				      ]
-				    })
-					)
+    	return 	api.readTemperature()
+				.then(json => line.client
+					.replyMessage({
+			      replyToken: event.replyToken,
+			      messages: [
+			        {
+			          type: 'text',
+			          text: `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`
+			        }
+			      ]
+			    })
+				)
     }
   })
 
