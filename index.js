@@ -45,7 +45,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							  "altText": "this is a buttons template",
 							  "template": {
 							      "type": "buttons",
-							      "thumbnailImageUrl": "http://assets1.smoothradio.com/2013/30/weather-1375260252-hero-wide-1.jpg",
+							      "thumbnailImageUrl": "https://img.clipartfest.com/e266a3b3df8e0180e112aede38a8fdc3_rain-pictures-clip-art-google-raining-cloud-clipart_533-381.jpeg",
 							      "title": "Menu",
 							      "text": "Please select",
 							      "actions": [
