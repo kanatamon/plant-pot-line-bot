@@ -45,14 +45,24 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							  "altText": "this is a buttons template",
 							  "template": {
 							      "type": "buttons",
-							      "thumbnailImageUrl": "http://assets1.smoothradio.com/2013/30/weather-1375260252-hero-wide-1.jpg",
-							      "title": "ต้นผักกาด",
+							      "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+							      "title": "Menu",
 							      "text": "Please select",
 							      "actions": [
 							          {
-							            "type": "message",
-							            "label": "ลดน้ำ",
-							            "text": "water"
+							            "type": "postback",
+							            "label": "Buy",
+							            "data": "action=buy&itemid=123"
+							          },
+							          {
+							            "type": "postback",
+							            "label": "Add to cart",
+							            "data": "action=add&itemid=123"
+							          },
+							          {
+							            "type": "uri",
+							            "label": "View detail",
+							            "uri": "http://example.com/page/123"
 							          }
 							      ]
 							  }
