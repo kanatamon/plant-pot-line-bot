@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-const readTemperature = require('./api').readTemperature
+const api = require('./api')
 
 const channelSecret = 'c4e4bee94a4699fafc214a5a725fb3f9'
 const chanelAccessToken = '30oK3U/OYhAREtjGPWjZlQ5ecHRO+w5NmJBBrAT7fysZzfWeeHSRVrcBw5Nx/whRPN13sBSzINT78OyWuL5oRqUNet3qeqbsqEpzBspTmXz/YE5leFQqaCAk/PgyjsRz/pBjApw3ggH8iib1TnMfjQdB04t89/1O/w1cDnyilFU='
@@ -31,8 +31,9 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   const promises = request.body.events.map(event => {
   	// Handle event message
     if (event.type === 'message') {
+    	console.log('recieve message', api)
     	return 	
-    		readTemperature()
+    		api.readTemperature()
 					.then(json => line.client
 						.replyMessage({
 				      replyToken: event.replyToken,
