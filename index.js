@@ -46,23 +46,13 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							  "template": {
 							      "type": "buttons",
 							      "thumbnailImageUrl": "https://img.clipartfest.com/e266a3b3df8e0180e112aede38a8fdc3_rain-pictures-clip-art-google-raining-cloud-clipart_533-381.jpeg",
-							      "title": "Menu",
-							      "text": "Please select",
+							      "title": "ต้นผักกาด",
+							      "text": `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`,
 							      "actions": [
 							          {
-							            "type": "postback",
-							            "label": "Buy",
-							            "data": "action=buy&itemid=123"
-							          },
-							          {
-							            "type": "postback",
-							            "label": "Add to cart",
-							            "data": "action=add&itemid=123"
-							          },
-							          {
-							            "type": "uri",
-							            "label": "View detail",
-							            "uri": "http://example.com/page/123"
+							            "type": "message",
+							            "label": "ลดน้ำ",
+							            "text": "water"
 							          }
 							      ]
 							  }
