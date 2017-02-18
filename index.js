@@ -33,7 +33,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   	console.log(event)
   	// Handle event message
     if (event.type === 'message') {
-    	return messeger.replyStatusTemplate()
+    	return messeger.replyStatusTemplate(event, line)
     }
   })
 
