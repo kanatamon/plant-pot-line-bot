@@ -29,6 +29,7 @@ line.init({
 app.post('/webhook/', line.validator.validateSignature(), (request, response, next) => {
   // Get content from request body
   const promises = request.body.events.map(event => {
+  	console.log(event)
   	// Handle event message
     if (event.type === 'message') {
     	return 	api.readTemperature()
@@ -53,6 +54,11 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							            "type": "message",
 							            "label": "ลดน้ำ",
 							            "text": "water"
+							          },
+							          {
+							          	"type": "postback",
+							          	"label": "ให้แสง",
+							          	"data": "action=add&itemid=123"
 							          }
 							      ]
 							  }
