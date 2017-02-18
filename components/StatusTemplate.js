@@ -9,13 +9,13 @@ module.exports = (values) => ({
 	  actions: [
 	    {
 	      type: "message",
-	      label: "ลดน้ำ",
-	      text: "water"
+	      label: "รดน้ำ",
+	      text: "รดน้ำ"
 	    },
 	    {
-	    	type: "postback",
-	    	label: "ให้แสง",
-	    	data: "action=add&itemid=123"
+	    	type: "message",
+	    	label: "เปิดไฟ",
+	    	text: "เปิดไฟ"
 	    }
 		]
 	}
