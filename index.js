@@ -32,8 +32,8 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   	console.log(event)
   	// Handle event message
     if (event.type === 'message') {
-    	return 	api.getTemperature()
-				.then(json => line.client
+    	return 	api.getSensorValues()
+				.then(values => line.client
 					.replyMessage({
 			      replyToken: event.replyToken,
 			      messages: [
@@ -48,7 +48,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 							      "type": "buttons",
 							      "thumbnailImageUrl": "https://img.clipartfest.com/e266a3b3df8e0180e112aede38a8fdc3_rain-pictures-clip-art-google-raining-cloud-clipart_533-381.jpeg",
 							      "title": "ต้นผักกาด",
-							      "text": `ตอนนี้อุณหภูมิอยู่ที่ ${json[0].payload} c`,
+							      "text": `ตอนนี้ อุณหภูมิอยู่ที่ ${values[0][0].payload} c ระดับแสงอยู่ที่ ${values[1][0].payload} และความชื้นอยู่ที่ ${values[2][0].payload} %`,
 							      "actions": [
 							          {
 							            "type": "message",
