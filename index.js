@@ -32,7 +32,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   	console.log(event)
   	// Handle event message
     if (event.type === 'message') {
-    	return 	api.readTemperature()
+    	return 	api.getTemperature()
 				.then(json => line.client
 					.replyMessage({
 			      replyToken: event.replyToken,
