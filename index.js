@@ -30,9 +30,27 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   // Get content from request body
   const promises = request.body.events.map(event => {
   	// Handle event message
-    if (event.type === 'message') {
-    	return messeger.replyStatusTemplate(event, line)
-    }
+  	const { type, message: { text } } = event.message
+  	
+  	switch(true) {
+  		case type === 'message' && text.includes('สถานนะ') : 
+  			return messeger.replyStatusTemplate(event, line)
+  		
+  		// case event.type === 'message' && userMessage.includes('รดน้ำ') : 
+  		// 	return messenger.replyWateringProcessMessage(event, line)
+  		
+  		// case event.type === 'message' && userMessage.includes('เปิดไฟ') : 
+  		// 	return messenger.replyTurningOnLightMessage(event, line)
+  		
+  		// case event.type === 'message' && userMessage.includes('ปิดไฟ') : 
+  		// 	return messenger.replyTurningOffLightMessage(event, line)
+
+  		default :
+  			break
+  	}
+    // if (event.type === 'message') {
+    // 	return messeger.replyStatusTemplate(event, line)
+    // }
   })
 
   Promise
