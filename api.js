@@ -32,6 +32,15 @@ const getSensorValues = () => {
 		}))
 }
 
+// Need implement
+// const getLightSwitchStatus = () => { }
+
+// Start watering process
+// const startWatering = () => { }
+
+// Turn on/off light switch
+// const turnLightSwitch = (isOn) => { }
+
 
 
 module.exports.getTemperature = getTemperature
