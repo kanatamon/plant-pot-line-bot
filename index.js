@@ -30,10 +30,10 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
   // Get content from request body
   const promises = request.body.events.map(event => {
   	// Handle event message
-  	const { type, message: { text } } = event.message
-  	
+  	const { type, message: { text } } = event
+
   	switch(true) {
-  		case type === 'message' && text.includes('สถานนะ') : 
+  		case type === 'message' && text.includes('สถานะ') : 
   			return messeger.replyStatusTemplate(event, line)
   		
   		// case event.type === 'message' && userMessage.includes('รดน้ำ') : 
