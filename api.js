@@ -24,13 +24,12 @@ const getSensorValues = () => {
 		'Humidity'
 	].map(getSensorValue)
 
-	return	
-		Promise.all(promises)
-			.then(values => ({
-				temperature : values[0],
-				lightLevel 	: values[1],
-				humidity 		: values[2]
-			}))
+	return	Promise.all(promises)
+		.then(values => ({
+			temperature : values[0][0].payload,
+			lightLevel 	: values[1][0].payload,
+			humidity 		: values[2][0].payload
+		}))
 }
 
 
