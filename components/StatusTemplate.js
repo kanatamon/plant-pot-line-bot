@@ -1,3 +1,9 @@
+const turnLightAction = (text) => ({
+	type	: 'message',
+	label	: text,
+	text 	: text
+})
+
 module.exports = (values) => ({
 	type: "template",
 	altText: "this is a buttons template",
@@ -12,11 +18,9 @@ module.exports = (values) => ({
 	      label: "รดน้ำ",
 	      text: "รดน้ำ"
 	    },
-	    {
-	    	type: "message",
-	    	label: "เปิดไฟ",
-	    	text: "เปิดไฟ"
-	    }
+	    values.lightStatus === 'ONLight'
+	    ? turnLightAction('เปิดไฟ')
+	    : turnLightAction('ปิดไฟ')
 		]
 	}
 })
