@@ -29,23 +29,33 @@ const replyStatusTemplate = (event, line) => api.getSensorValues()
 	))
 
 const replyWateringProcessMessage = (event, line) => api.startWatering()
-	.then(isSuccess => line.client.replyMessage(
-		{
-			replyToken: event.replyToken,
-			messages: [
-				{
-			    type: 'text',
-			    text: isSuccess ? 'กำลังรดน้ำ' : 'ไม่สามารถทำการรดน้ำได้'
-				}
-			]
+	.then(isSuccess => {
+		if (isSuccess) {
+			// Count time for 10 sec to push message 'waterring finished' to the user
+			setTimeout(() => {
+				console.log('Pust finished message')
+				pushFinishingWateringMessage(event, line)
+			}, 1000 * 10)
 		}
-	))
-	.then(replyPromise => {
-		// Count time for 10 sec to push message 'waterring finished' to the user
-		setTimeout(() => pushFinishingWateringMessage(event, line), 1000 * 10)
 
-		return replyPromise
+		return line.client.replyMessage(
+			{
+				replyToken: event.replyToken,
+				messages: [
+					{
+				    type: 'text',
+				    text: isSuccess ? 'กำลังรดน้ำ' : 'ไม่สามารถทำการรดน้ำได้'
+					}
+				]
+			}
+		)
 	})
+	// .then(replyPromise => {
+	// 	// Count time for 10 sec to push message 'waterring finished' to the user
+	// 	setTimeout(() => pushFinishingWateringMessage(event, line), 1000 * 10)
+
+	// 	return replyPromise
+	// })
 
 const replyTurningOnLightMessage = (event, line) => api.turnLightSwitch(true)
 	.then(isSuccess => line.client.replyMessage(
