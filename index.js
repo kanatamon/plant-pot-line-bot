@@ -25,33 +25,34 @@ line.init({
 	channelSecret: channelSecret
 })
 
-// Event message handler
+// Event handler
 app.post('/webhook/', line.validator.validateSignature(), (request, response, next) => {
+	// Your code here 
+
   // Get content from request body
-  const promises = request.body.events.map(event => {
-  	// Handle event message
-  	const { type, message: { text } } = event
+  const promises = request.body.events
+  	.map(event => {
+	  	// Destruct used value from event(object)
+	  	const { type, message: { text } } = event
 
-  	switch(true) {
-  		case type === 'message' && text.includes('สถานะ') : 
-  			return messeger.replyStatusTemplate(event, line)
-  		
-  		// case event.type === 'message' && userMessage.includes('รดน้ำ') : 
-  		// 	return messenger.replyWateringProcessMessage(event, line)
-  		
-  		// case event.type === 'message' && userMessage.includes('เปิดไฟ') : 
-  		// 	return messenger.replyTurningOnLightMessage(event, line)
-  		
-  		// case event.type === 'message' && userMessage.includes('ปิดไฟ') : 
-  		// 	return messenger.replyTurningOffLightMessage(event, line)
+	  	switch(true) {
+	  		case type === 'message' && text.includes('สถานะ') : 
+	  			return messeger.replyStatusTemplate(event, line)
+	  		
+	  		case event.type === 'message' && userMessage.includes('รดน้ำ') : 
+	  			return messenger.replyWateringProcessMessage(event, line)
+	  		
+	  		case event.type === 'message' && userMessage.includes('เปิดไฟ') : 
+	  			return messenger.replyTurningOnLightMessage(event, line)
+	  		
+	  		case event.type === 'message' && userMessage.includes('ปิดไฟ') : 
+	  			return messenger.replyTurningOffLightMessage(event, line)
 
-  		default :
-  			break
-  	}
-    // if (event.type === 'message') {
-    // 	return messeger.replyStatusTemplate(event, line)
-    // }
-  })
+	  		default :
+	  			return null
+	  	}
+  	})
+  	.filter(x => x != null)
 
   Promise
     .all(promises)
