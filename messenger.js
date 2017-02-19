@@ -77,6 +77,6 @@ const replyTurningOffLightMessage = (event, line) => api.turnLightSwitch(false)
 
 module.exports.replyStatusTemplate = replyStatusTemplate
 module.exports.replyWateringProcessMessage 		= replyWateringProcessMessage
-module.exports.replyFinishingWateringMessage 	= replyFinishingWateringMessage
+// module.exports.pushFinishingWateringMessage 	= pushFinishingWateringMessage
 module.exports.replyTurningOnLightMessage 	= replyTurningOnLightMessage
 module.exports.replyTurningOffLightMessage 	= replyTurningOffLightMessage
