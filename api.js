@@ -14,7 +14,7 @@ const getSensorValue = (sensorName) => fetch(`${endpoint}/topic/${appId}/sensor/
 	  return response.json();
 	})
 
-const sendMessageToMicrogear = (messsage) => fetch(`${endpoint}/microgear/${appId}/plug?auth=${auth}`, {
+const sendMessageToMicrogear = (messsage) => fetch(`${endpoint}/microgear/${appId}/sensor?auth=${auth}`, {
   method: 'PUT',
   body: messsage
 })
@@ -51,7 +51,7 @@ const getSensorValues = () => {
 const startWatering = () => sendMessageToMicrogear('ONWater')
 
 // Turn on/off light switch
-const turnLightSwitch = (isOn) => sendMessageToMicrogear(isOn ? 'ON' : 'OFF')
+const turnLightSwitch = (isOn) => sendMessageToMicrogear(isOn ? 'ONLight' : 'OFFLight')
 
 
 
