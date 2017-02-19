@@ -6,7 +6,7 @@ const express = require('express')
 const line = require('node-line-bot-api')
 const bodyParser = require('body-parser')
 
-const messeger = require('./messenger')
+const messenger = require('./messenger')
 
 const app = express()
 
@@ -37,7 +37,7 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 
 	  	switch(true) {
 	  		case type === 'message' && text.includes('สถานะ') : 
-	  			return messeger.replyStatusTemplate(event, line)
+	  			return messenger.replyStatusTemplate(event, line)
 	  		
 	  		case event.type === 'message' && text.includes('รดน้ำ') : 
 	  			return messenger.replyWateringProcessMessage(event, line)
