@@ -14,9 +14,12 @@ const getSensorValue = (sensorName) => fetch(`${endpoint}/topic/${appId}/sensor/
 	  return response.json();
 	})
 
-const sendMessageToMicrogear = (messsage) => fetch(`${endpoint}/microgear/${appId}/sensor?auth=${auth}`, {
+const sendMessageToMicrogear = (message) => fetch(`${endpoint}/microgear/${appId}/sensor?auth=${auth}`, {
   method: 'PUT',
-  body: messsage
+  body: message,
+  headers: {
+  	'Content-Type': 'text/plain'
+  }
 })
 	.then(response => response.json())
 	.then(json => json.code === 200)
