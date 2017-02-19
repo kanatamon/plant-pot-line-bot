@@ -39,13 +39,13 @@ app.post('/webhook/', line.validator.validateSignature(), (request, response, ne
 	  		case type === 'message' && text.includes('สถานะ') : 
 	  			return messeger.replyStatusTemplate(event, line)
 	  		
-	  		case event.type === 'message' && userMessage.includes('รดน้ำ') : 
+	  		case event.type === 'message' && text.includes('รดน้ำ') : 
 	  			return messenger.replyWateringProcessMessage(event, line)
 	  		
-	  		case event.type === 'message' && userMessage.includes('เปิดไฟ') : 
+	  		case event.type === 'message' && text.includes('เปิดไฟ') : 
 	  			return messenger.replyTurningOnLightMessage(event, line)
 	  		
-	  		case event.type === 'message' && userMessage.includes('ปิดไฟ') : 
+	  		case event.type === 'message' && text.includes('ปิดไฟ') : 
 	  			return messenger.replyTurningOffLightMessage(event, line)
 
 	  		default :
