@@ -7,53 +7,62 @@ const replyStatusTemplate = (event, line) => api.getSensorValues()
 	.then(values => line.client.replyMessage(
 		{
 			replyToken: event.replyToken,
-			messages: [StatusTemplate(values)]
+			messages: [
+				StatusTemplate(values)
+			]
 		}
 	))
 
-// Need implement
-const replyWateringProcessMessage = (event, line) => line.client.replyMessage({
-	replyToken: event.replyToken,
-	messages: [
+const replyWateringProcessMessage = (event, line) => api.startWatering()
+	.then(isSuccess => line.client.replyMessage(
 		{
-	    type: "text",
-	    text: "กำลังรดน้ำ"
-  	}
-	]
-}) 
+			replyToken: event.replyToken,
+			messages: [
+				{
+			    type: 'text',
+			    text: isSuccess ? 'กำลังรดน้ำ' : 'ไม่สามารถทำการรดน้ำได้'
+				}
+			]
+		}
+	))
+
 
 // Need implement
 const replyFinishingWateringMessage = (event, line) => line.client.replyMessage({
 	replyToken: event.replyToken,
 	messages: [
 		{
-	    type: "text",
-	    text: "รดน้ำเสร็จแล้ว"
+	    type: 'text',
+	    text: 'รดน้ำเสร็จแล้ว'
   	}
 	]
 }) 
 
-// Need implement
-const replyTurningOnLightMessage = (event, line) => line.client.replyMessage({
-	replyToken: event.replyToken,
-	messages: [
+const replyTurningOnLightMessage = (event, line) => api.turnLightSwitch(true)
+	.then(isSuccess => line.client.replyMessage(
 		{
-	    type: "text",
-	    text: "เปิดไฟแล้ว"
-  	}
-	]
-}) 
+			replyToken: event.replyToken,
+			messages: [
+				{
+			    type: 'text',
+			    text: isSuccess ? 'เปิดไฟแล้ว' : 'ไม่สามารถเปิดไฟได้'
+		  	}
+			]
+		}
+	))
 
-// Need implement
-const replyTurningOffLightMessage = (event, line) => line.client.replyMessage({
-	replyToken: event.replyToken,
-	messages: [
+const replyTurningOffLightMessage = (event, line) => api.turnLightSwitch(false)
+	.then(isSuccess => line.client.replyMessage(
 		{
-	    type: "text",
-	    text: "ปิดไฟแล้ว"
-  	}
-	]
-}) 
+			replyToken: event.replyToken,
+			messages: [
+				{
+			    type: 'text',
+			    text: isSuccess ? 'ปิดไฟแล้ว' : 'ไม่สามารถปิดไฟได้'
+		  	}
+			]
+		}
+	))
 
 
 
