@@ -1,6 +1,6 @@
 const endpoint = 'https://api.netpie.io'
-const appId = 'PlantPot2'
-const auth = 'ZepuXAjlRO7ufkC:bGV9Y64ekskQK1nqWWAtRVrgq'
+const appId = 'PlantPot3'
+const auth = 'KGpw9EHemes8HO8:nUXysleIgAJT5ZD6xoZ8V871H'
 
 
 
