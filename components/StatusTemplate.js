@@ -18,6 +18,7 @@ module.exports = (values) => ({
 	      label: "รดน้ำ",
 	      text: "รดน้ำ"
 	    },
+	    turnLightAction('เปิดไฟ')
 	    // values.lightStatus === 'ONLight'
 	    // ? turnLightAction('เปิดไฟ')
 	    // : turnLightAction('ปิดไฟ')
