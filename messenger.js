@@ -4,7 +4,7 @@ const StatusTemplate = require('./components/StatusTemplate')
 
 // Push message
 
-const pushFinishingWateringMessage = (event, line) => line.client.replyMessage({
+const pushFinishingWateringMessage = (event, line) => line.client.pushMessage({
 	to: event.source.userId,
 	messages: [
 		{
