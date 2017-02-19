@@ -2,6 +2,21 @@ const api = require('./api')
 const StatusTemplate = require('./components/StatusTemplate')
 
 
+// Push message
+
+const pushFinishingWateringMessage = (event, line) => line.client.replyMessage({
+	to: event.source.userId,
+	messages: [
+		{
+	    type: 'text',
+	    text: 'รดน้ำเสร็จแล้ว'
+  	}
+	]
+}) 
+
+
+
+// Reply message
 
 const replyStatusTemplate = (event, line) => api.getSensorValues()
 	.then(values => line.client.replyMessage(
@@ -25,18 +40,12 @@ const replyWateringProcessMessage = (event, line) => api.startWatering()
 			]
 		}
 	))
+	.then(replyPromise => {
+		// Count time for 10 sec to push message 'waterring finished' to the user
+		setTimeout(() => pushFinishingWateringMessage(event, line), 1000 * 10)
 
-
-// Need implement
-const replyFinishingWateringMessage = (event, line) => line.client.replyMessage({
-	replyToken: event.replyToken,
-	messages: [
-		{
-	    type: 'text',
-	    text: 'รดน้ำเสร็จแล้ว'
-  	}
-	]
-}) 
+		return replyPromise
+	})
 
 const replyTurningOnLightMessage = (event, line) => api.turnLightSwitch(true)
 	.then(isSuccess => line.client.replyMessage(
