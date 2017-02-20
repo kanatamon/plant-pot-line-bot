@@ -13,9 +13,9 @@ module.exports = (values) => ({
 	  title: "ต้นผักกาด",
 		text: `ตอนนี้ อุณหภูมิอยู่ที่ ${values.temperature} c ระดับแสงอยู่ที่ ${values.lightLevel} และความชื้นอยู่ที่ ${values.humidity} %`,
 	  actions: [
-	    renderAction('รดน้ำ'),
-	    renderAction('เปิดไฟ'),
-	    renderAction('ปิดไฟ')
+	    renderMessageAction('รดน้ำ'),
+	    renderMessageAction('เปิดไฟ'),
+	    renderMessageAction('ปิดไฟ')
 	    // values.lightStatus === 'ONLight'
 	    // ? turnLightAction('เปิดไฟ')
 	    // : turnLightAction('ปิดไฟ')
