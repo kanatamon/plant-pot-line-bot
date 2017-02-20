@@ -1,4 +1,4 @@
-const turnLightAction = (text) => ({
+const renderMessageAction = (text) => ({
 	type	: 'message',
 	label	: text,
 	text 	: text
@@ -13,12 +13,9 @@ module.exports = (values) => ({
 	  title: "ต้นผักกาด",
 		text: `ตอนนี้ อุณหภูมิอยู่ที่ ${values.temperature} c ระดับแสงอยู่ที่ ${values.lightLevel} และความชื้นอยู่ที่ ${values.humidity} %`,
 	  actions: [
-	    {
-	      type: "message",
-	      label: "รดน้ำ",
-	      text: "รดน้ำ"
-	    },
-	    turnLightAction('เปิดไฟ')
+	    renderAction('รดน้ำ'),
+	    renderAction('เปิดไฟ'),
+	    renderAction('ปิดไฟ')
 	    // values.lightStatus === 'ONLight'
 	    // ? turnLightAction('เปิดไฟ')
 	    // : turnLightAction('ปิดไฟ')
